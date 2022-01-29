@@ -15,8 +15,7 @@ class Favorite(Base):
     id = Column(Integer, primary_key=True)
     character_id = Column(Integer,ForeignKey('character.id'), nullable=True)
     planet_id = Column(Integer,ForeignKey('planet.id'), nullable=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    # user = relationship(User)
+    user_id = Column(Integer, ForeignKey('user.id'), nullable = False)
 
 class User(Base):
     __tablename__ = 'user'
@@ -25,28 +24,27 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     email = Column(String(250), nullable=False)
     password = Column(String(250), nullable=False)
-    favorite = relationship(Favorite)
 
 class Character(Base):
     __tablename__ = 'character'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250))
-    height = Column(Integer)
-    hair_color = Column(String(250))
-    eye_color = Column(String(250))
-    birth_year = Column(String(250))
-    gender = Column(String(250))
+    name = Column(String(250), nullable=False)
+    height = Column(Integer, nullable=False)
+    hair_color = Column(String(250), nullable=False)
+    eye_color = Column(String(250), nullable=False)
+    birth_year = Column(String(250), nullable=False)
+    gender = Column(String(250), nullable=False)
 
 class Planet(Base):
     __tablename__ = 'planet'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250))
-    climate = Column(String(250))
-    rotation_period = Column(Integer)
-    orbital_period = Column(Integer)
-    diameter = Column(Integer)
-    terrain = Column(String(250))
-    populations = Column(Integer)
+    name = Column(String(250), nullable=False)
+    climate = Column(String(250), nullable=False)
+    rotation_period = Column(Integer, nullable=False)
+    orbital_period = Column(Integer, nullable=False)
+    diameter = Column(Integer, nullable=False)
+    terrain = Column(String(250), nullable=False)
+    populations = Column(Integer, nullable=False)
 
     def to_dict(self):
         return {}
